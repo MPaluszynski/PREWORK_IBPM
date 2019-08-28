@@ -7,13 +7,11 @@ Następnie wewnątrz funkcji, została zdefiniowana kolejna funkcja o nazwier "r
 Wykorzystuje ona do tego celu funkcję "random" zdefiniowaną w obiekcie Math, która zwraca losową liczbę z przedziału od 0 do 1.
 Aby zwrócić losową datę 'randomDate" posługuje się prostą formułą matematyczną, która do początku zadanego funkcji przedziału dodaje różnicę końca i początku przedziału, przemnożonego przez losowo wygenerowaną liczbę ułamkową.
 Dzięki temu otrzymana przez nas losowa data jest zawsze większa od wartości początkowej przedziału i zawsze mniejsza od wartości końcowej.
-
-W następnej kolejności zdefiniowane zostały: jedna pusta tablica "tab" oraz dwie przechowujące odpowiednio nazwy dni tygodnia oraz nazwy miesięcy - "daysOfWeek" i "monthsOfYear".
-
+W następnej kolejności zdefiniowana została pusta tablica "tab".
 Aby zwrócić tablicę składającą się z wymaganych przez zadanie elementów funkcja posługuje się pętlą for, która w każdej iteracji kolejno:
 - generuje losową datę za pomocą funkcji randomDate jako argumenty przekazując jej zdefiniowane na samym początku zmienne dt1 i dt2.
-- przydziela wygenerowaną datę do zdefiniowanej wcześniej tablicy
-- wyświetla wymagane przez polecenie informacje - dzień tygodnia, rok, miesiąc, data - posługując się zdefiniowanymi w obiekcie Date odpowiednimi metodami.
+- przydziela wygenerowaną datę do zdefiniowanej wcześniej tablicy, która następnie za pomocą metody toLocalDateString formatuję datę do łańcucha znaków o zadananych parametrach.
+- wyświetla wymagane przez polecenie informacje - dzień tygodnia, rok, miesiąc, data.
 Dodatkowo aby wyświetlić nazwy dni tygodnia oraz miesiąca, funkcja posługuje się zdefiniowanymi wcześniej tablicami "daysOfWeek" i "monthsOfYear".
 Odpowiednia nazwa zostaje pobrana z ww. tablic na podstawie numeru indeksu, który został zwrócony przez funkcje getDay() oraz getMonth().
 
@@ -35,15 +33,11 @@ function Funkcja_zadanie_1 (poczatek, koniec, ilosc_elementow) {
     }
 
     var tab=[];
-    var daysOfWeek = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
-    var monthsOfYear = ['styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec', 'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'];
 
     for(var x = 0 ; x<ilosc_elementow ; x++) {
         var date = randomDate(dt1,dt2);
-
-        tab[x] = date;
-
-        console.log(daysOfWeek[tab[x].getDay()] + ", " + tab[x].getFullYear() + ", " + monthsOfYear[tab[x].getMonth()] +  ", " + tab[x].getDate());
+        tab[x] = date.toLocaleDateString( "en" , { weekday: "long", year: "numeric", month: "long", day: "2-digit" });
+        console.log(tab[x])
     }
 }
 
